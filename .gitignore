@@ -1,0 +1,53 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pdb
+
+# ---- Virtual Environments ----
+.env
+.venv
+env/
+venv/
+ENV/
+
+# ---- FastAPI / Uvicorn ----
+*.log
+*.db
+instance/
+*.sqlite3
+
+# ---- IDEs ----
+.vscode/
+.idea/
+
+# ---- Testing ----
+.coverage
+htmlcov/
+.cache
+.pytest_cache/
+
+# ---- Packaging ----
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ---- Jupyter Notebooks ----
+.ipynb_checkpoints
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- Mypy / Pylint ----
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# ---- Pydantic / FastAPI ----
+*.json
+*.yaml
