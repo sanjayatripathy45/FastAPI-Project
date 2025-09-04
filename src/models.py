@@ -1,11 +1,12 @@
 from sqlmodel import SQLModel, Field, Column
 import sqlalchemy.dialects.postgresql as pg
-from datetime import datetime
+from datetime import datetime, date
 import uuid 
 
+
 class Book(SQLModel, table=True):
-    __tablename__ = "books"
-    id: uuid.UUID = Field(
+    __tablename__ = "book-database"
+    uid: uuid.UUID = Field(
         sa_column=Column(
             pg.UUID,
             nullable=False,
@@ -17,15 +18,12 @@ class Book(SQLModel, table=True):
     title: str
     author: str
     publisher: str
-    publisher_date: str
+    publisher_date: date
     language: str
     page_count: int
-    created_at: datetime = Field(
-        sa_column=Column(pg.TIMESTAMP, default=datetime.utcnow)
-    )
-    updated_at: datetime = Field(
-    sa_column=Column(pg.TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
-)
+    created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+
 
 def __repr__(self):
     return f"<Book {self.title}>"

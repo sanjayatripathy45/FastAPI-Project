@@ -1,5 +1,5 @@
 from sqlmodel.ext.asyncio.session import AsyncSession
-from .schemas import BookCreateModel,BookUpdateModel
+from .schemas import BookCreateModel,BookUpdateModel,BookResponse
 from sqlmodel import select, desc
 from src.models import Book
 
@@ -9,7 +9,14 @@ class BookService:
 
         result = await session.exec(statement)
 
-        return result.all()
+        books = result.all() 
+
+        return {
+            "message": "success",
+            "status": 200,
+            "data": [BookResponse.model_validate(book, from_attributes=True) for book in books]
+        }
+
 
     async def get_book(self,  book_uid: str, session: AsyncSession):
         statement = select(Book).where(Book.uid == book_uid)
